@@ -5,14 +5,14 @@ const app = express();
 
 import jobsRoutes from "./routes/jobsRoutes";
 import candidatesRoutes from "./routes/candidatesRoutes";
-import router from "./routes/match";
+import matchRoutes from "./routes/match";
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/jobs", jobsRoutes);
 app.use("/candidates", candidatesRoutes);
-app.use("/match", router)
+app.use("/match", matchRoutes)
 
 app.get("/", (req, res) => {
     res.send("Backend is running");
