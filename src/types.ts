@@ -2,7 +2,7 @@ export interface Candidate {
     id: string;
     name: string;
     skills: string[];
-    yearsExperience:number;
+    experience:number;
     location: string;
 }
 
