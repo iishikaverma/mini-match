@@ -7,7 +7,7 @@ import calculateMatchScore from "../utils/scoring";
 const router = express.Router();
 
 router.post("/", (req, res) => {
-    const { jobId } = req.body;
+    const { jobId, minScore } = req.body;
     const job = jobs.find(
         (job) => job.id === jobId
     );
@@ -31,7 +31,11 @@ router.post("/", (req, res) => {
         (a, b) => b.totalScore - a.totalScore
     );
 
-    res.json(matches);
+    const filteredMatches =
+        minScore !== undefined
+            ? matches.filter( (match) => match.totalScore >= minScore ): matches;
+
+    res.json(filteredMatches);
 });
 
 export default router;
