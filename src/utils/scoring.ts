@@ -26,9 +26,9 @@ function calculateMatchScore(candidate: Candidate, job: Job) {
     }
 
     let locationScore = 0;
-    if (job.location === "Remote" || candidate.location === "Remote") {
+    if (job.location.toLowerCase() === "remote" || candidate.location.toLowerCase() === "remote") {
         locationScore = 1;
-    } else if (candidate.location === job.location) {
+    } else if (candidate.location.toLowerCase() === job.location.toLowerCase()) {
         locationScore = 1;
     } else {
         locationScore = 0;
@@ -41,10 +41,10 @@ function calculateMatchScore(candidate: Candidate, job: Job) {
 
     return {
         totalScore,
-        "breakdown": {
-            "skillScore": 1,
-            "experienceScore": 0.8,
-            "locationScore": 0.5
+        breakdown: {
+            skillScore,
+            experienceScore,
+            locationScore
         }
     };
 }
