@@ -22,6 +22,16 @@ router.post("/", (req, res) => {
         location: req.body.location
     };
 
+    const existingCandidate = candidates.find(
+        (candidate) => candidate.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (existingCandidate) {
+        return res.status(400).json({
+            error: "Candidate already exists"
+        });
+    }
+
     candidates.push(newCandidate);
 
     res.status(201).json({
